@@ -20,6 +20,7 @@ import android.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apprutas.R;
+import com.example.apprutas.UserRoutes;
 import com.example.apprutas.Users;
 import com.example.apprutas.bd.connection;
 import com.example.apprutas.entities.UserVo;
@@ -127,12 +128,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             String name = txtNameUser.getText().toString();
             switch (v.getId()) {
                 case R.id.btnViewRoutes:
-                    //Intent intent = new Intent(context, details_user.class);
+                    Intent intent = new Intent(context, UserRoutes.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     //enviamos el id y el nombre de una actividad a otra
                     //intent.putExtra("idDeal", id);
                     //intent.putExtra("nameDeal", name);
                     Toast.makeText(context, "Usuario: " + name, Toast.LENGTH_SHORT).show();
-                   // context.startActivity(intent);
+                   context.startActivity(intent);
                     break;
                 case R.id.btnDestroyUser:
 

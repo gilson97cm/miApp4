@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/md_white_1000"
-    tools:context=".frm_add_user">
+    tools:context=".user.frm_add_user">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarAddUsers"
         android:layout_width="match_parent"

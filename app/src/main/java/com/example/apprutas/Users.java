@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.apprutas.adapter.UserAdapter;
 import com.example.apprutas.bd.connection;
 import com.example.apprutas.entities.UserVo;
+import com.example.apprutas.user.frm_add_user;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
@@ -131,7 +132,7 @@ public class Users extends AppCompatActivity implements View.OnClickListener {
         Intent intent = null;
         switch (v.getId()){
             case R.id.addUsers:
-                intent = new Intent(Users.this,frm_add_user.class);
+                intent = new Intent(Users.this, frm_add_user.class);
                 Toast.makeText(Users.this, "Agregar Usuario", Toast.LENGTH_SHORT).show();
                 break;
         }
