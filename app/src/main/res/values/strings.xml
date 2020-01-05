@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">AppRutas</string>
+    <string name="viewUsers">Usuarios</string>
+    <string name="viewMap">Mapa</string>
+    <string name="viewListUsers">Lista de Usuarios</string>
+    <string name="Users">Usuarios Registrados</string>
+    <string name="searchUser">Buscar Usuario...</string>
+
+    <string name="idUser">Código</string>
+    <string name="name">Nombre</string>
+    <string name="lastName">Apellido</string>
+    <string name="numRoutes"># Routes User</string>
+    <string name="avatarUser">Avatar</string>
+
+    <string name="viewRoutes">Ver Rutas</string>
+    <string name="destroy">Eliminar</string>
+
+    <string name="addUser">Registrar Usuario</string>
+    <string name="frmUser">Formulario de Usuarios</string>
+
+    <string name="change">Cambiar</string>
+    <string name="remove">Quitar</string>
+
+</resources>
