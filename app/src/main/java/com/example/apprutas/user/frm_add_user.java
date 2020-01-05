@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.example.apprutas.R;
 import com.example.apprutas.Users;
+import com.example.apprutas.Util;
 import com.example.apprutas.bd.connection;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -167,7 +168,9 @@ public class frm_add_user extends AppCompatActivity {
             try {
                 InputStream inputStream = getContentResolver().openInputStream(uri);
                 Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                avatarViewFrm.setImageBitmap(bitmap);
+                Util util = new Util();
+                Bitmap finalBtmp = util.getCroppedBitmap(bitmap);
+                avatarViewFrm.setImageBitmap(finalBtmp);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }

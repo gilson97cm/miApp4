@@ -30,4 +30,8 @@
     <string name="lat">Latitud:</string>
     <string name="lng">Longitud:</string>
 
+    <string name="viewInMap">Ver en Mápa</string>
+    <string name="title_activity_view_in_map">Map</string>
+
+
 </resources>

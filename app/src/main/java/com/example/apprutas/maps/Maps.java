@@ -1,4 +1,4 @@
-package com.example.apprutas;
+package com.example.apprutas.maps;
 
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.apprutas.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -77,12 +78,10 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
 
     public void Antut (GoogleMap googleMap) {
         mMap = googleMap;
-
         final LatLng punto1 = new LatLng(-0.9329105480583024,-78.61739929765154);
         //final LatLng punto2 = new LatLng(38.4190531,-3.6936194);
         mMap.addMarker(new MarkerOptions().position(punto1).title("El Salto").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
         //mMap.addMarker(new MarkerOptions().position(punto2).title("Punto2").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
-
 
     }
 }

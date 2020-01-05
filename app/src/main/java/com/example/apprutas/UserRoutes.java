@@ -232,8 +232,10 @@ public class UserRoutes extends AppCompatActivity {
 
             byte[] blob = fila.getBlob(3);
             Bitmap bmp = BitmapFactory.decodeByteArray(blob, 0, blob.length);
+            Util util = new Util();
+            Bitmap finatBtmp = util.getCroppedBitmap(bmp);
             ImageView image = new ImageView(this);
-            avatarUserRoutes.setImageBitmap(bmp);
+            avatarUserRoutes.setImageBitmap(finatBtmp);
 
         } else {
             Toast.makeText(this, "No hay registro.", Toast.LENGTH_SHORT).show();

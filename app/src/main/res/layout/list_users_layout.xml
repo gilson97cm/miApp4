@@ -34,7 +34,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:gravity="center"
-                        android:padding="5dp">
+                        android:padding="2dp">
                         <TextView
                             android:id="@+id/txtIdUser"
                             android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
                             android:layout_height="85dp"
                             android:layout_margin="10dp"
                             android:background="@drawable/img_background"
-                            android:padding="2dp"
+                            android:padding="1dp"
                             android:src="@drawable/ic_logo_default" />
 
                     </LinearLayout>

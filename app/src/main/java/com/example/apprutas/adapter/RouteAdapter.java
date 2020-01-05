@@ -23,6 +23,7 @@ import com.example.apprutas.UserRoutes;
 
 import com.example.apprutas.bd.connection;
 import com.example.apprutas.entities.RouteVo;
+import com.example.apprutas.maps.ViewInMap;
 
 
 import java.util.ArrayList;
@@ -115,14 +116,16 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteViewHol
         public void onClick(View v) {
             String id = txtIdRoute.getText().toString();
             String city = txtCity.getText().toString();
+            String idUser = txtIdUserCard.getText().toString();
             switch (v.getId()) {
                 case R.id.btnViewInMap:
-                    // Intent intent = new Intent(context, UserRoutes.class);
-                    //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    Intent intent = new Intent(context, ViewInMap.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     //enviamos el id y el nombre de una actividad a otra
-                    //intent.putExtra("id", id);
+                    intent.putExtra("idRoute", id);
+                    intent.putExtra("idUser", idUser);
                     Toast.makeText(context, "ver en mapa", Toast.LENGTH_SHORT).show();
-                    //context.startActivity(intent);
+                    context.startActivity(intent);
                     break;
                 case R.id.btnDestroyRoute:
 

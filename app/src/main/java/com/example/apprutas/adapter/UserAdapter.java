@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.apprutas.R;
 import com.example.apprutas.UserRoutes;
 import com.example.apprutas.Users;
+import com.example.apprutas.Util;
 import com.example.apprutas.bd.connection;
 import com.example.apprutas.entities.UserVo;
 
@@ -57,7 +58,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         //imagen
         byte[] avatarUser = mDataset.get(position).getAvatar();
         Bitmap bitmap = BitmapFactory.decodeByteArray(avatarUser, 0, avatarUser.length);
-        holder.avatarView.setImageBitmap(bitmap);
+        Util util = new Util();
+        Bitmap finalBtmp = util.getCroppedBitmap(bitmap);
+        holder.avatarView.setImageBitmap(finalBtmp);
 
         //botones
         holder.setOnClickListeners();
