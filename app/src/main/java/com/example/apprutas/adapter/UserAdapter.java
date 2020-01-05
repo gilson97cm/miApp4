@@ -62,6 +62,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         Bitmap finalBtmp = util.getCroppedBitmap(bitmap);
         holder.avatarView.setImageBitmap(finalBtmp);
 
+        //contar el numero de rutas
+        connection db = new connection(holder.context , "bdRoutes", null, 1);
+        SQLiteDatabase baseDatos = db.getWritableDatabase();
+        Cursor fila = baseDatos.rawQuery("SELECT * FROM route WHERE idUser = '" + mDataset.get(position).getId() + "'", null);
+        Integer c = fila.getCount();
+        baseDatos.close();
+        holder.txtNumRoutes.setText(""+c+" Ruta(s)");
+
         //botones
         holder.setOnClickListeners();
 
@@ -75,7 +83,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     }
 
     //filtrar usuarios
-    public void setFilter(ArrayList<UserVo> dealList_){
+    public void setFilter(ArrayList<UserVo> dealList_) {
         this.mDataset = new ArrayList<>();
         this.mDataset.addAll(dealList_);
         notifyDataSetChanged();
@@ -129,7 +137,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
                     //enviamos el id y el nombre de una actividad a otra
                     intent.putExtra("id", id);
                     Toast.makeText(context, "Usuario: " + name, Toast.LENGTH_SHORT).show();
-                   context.startActivity(intent);
+                    context.startActivity(intent);
                     break;
                 case R.id.btnDestroyUser:
 
@@ -146,22 +154,22 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
                             SQLiteDatabase baseDatos = db.getWritableDatabase();
 
                             if (!id.equals("")) {
-                                Cursor fila = baseDatos.rawQuery("SELECT * FROM user WHERE id = '"+id+"'", null);
+                                Cursor fila = baseDatos.rawQuery("SELECT * FROM user WHERE id = '" + id + "'", null);
                                 if (fila.getCount() <= 0) {
                                     Toast.makeText(context, "Nada para eliminar.", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Cursor route = baseDatos.rawQuery("SELECT * FROM route WHERE idUser = '"+id+"'",null);
-                                    if(route.getCount() <=0 ){
+                                    Cursor route = baseDatos.rawQuery("SELECT * FROM route WHERE idUser = '" + id + "'", null);
+                                    if (route.getCount() <= 0) {
                                         Toast.makeText(context, "usuario sin rutas.", Toast.LENGTH_SHORT).show();
-                                    }else{
-                                        baseDatos.delete("route", "idUser = '"+id+"'", null);
+                                    } else {
+                                        baseDatos.delete("route", "idUser = '" + id + "'", null);
                                         Toast.makeText(context, "Se elimino rutas de: " + name, Toast.LENGTH_SHORT).show();
                                     }
-                                    baseDatos.delete("user", "id = '"+id+"'", null);
+                                    baseDatos.delete("user", "id = '" + id + "'", null);
                                     baseDatos.close();
                                     Toast.makeText(context, "Se elimino: " + name, Toast.LENGTH_SHORT).show();
-                                     Intent intent1 = new Intent(context, Users.class);
-                                     intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    Intent intent1 = new Intent(context, Users.class);
+                                    intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     context.startActivity(intent1);
                                 }
                             } else {

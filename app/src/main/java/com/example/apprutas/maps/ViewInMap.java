@@ -94,7 +94,7 @@ public class ViewInMap extends FragmentActivity implements OnMapReadyCallback {
 
             Cursor user = baseDatos.rawQuery("SELECT * FROM user WHERE id = '" + idUser + "'", null);
             if (user.moveToFirst()) {
-                blob = user.getBlob(3);
+                blob = user.getBlob(3); // se recupera  la imagen
                 nameUser = user.getString(1);
                 lastNameUser = user.getString(2);
                 bmp = BitmapFactory.decodeByteArray(blob, 0, blob.length);
@@ -102,7 +102,7 @@ public class ViewInMap extends FragmentActivity implements OnMapReadyCallback {
 
                 ImageView image = new ImageView(this);
                 // avatarUserRoutes.setImageBitmap(bmp);
-            }else{
+            } else {
                 Toast.makeText(this, "No hay usuario.", Toast.LENGTH_SHORT).show();
             }
 
@@ -114,12 +114,14 @@ public class ViewInMap extends FragmentActivity implements OnMapReadyCallback {
         Util util = new Util();
         Bitmap roundBtmp = util.getCroppedBitmap(bmp);
         //cambiar el tamaño
-       Bitmap finalBtmp = Bitmap.createScaledBitmap(roundBtmp, 60, 60, false);
+        Bitmap finalBtmp = Bitmap.createScaledBitmap(roundBtmp, 60, 60, false);
 
         final LatLng punto1 = new LatLng(lat, lng);
+
+
         mMap.addMarker(new MarkerOptions().position(punto1)
                 .title(city)
-                .snippet(nameUser+" "+lastNameUser)
+                .snippet(nameUser + " " + lastNameUser)
                 .icon(BitmapDescriptorFactory.fromBitmap(finalBtmp)));
 
         float zoomLevel = 16;

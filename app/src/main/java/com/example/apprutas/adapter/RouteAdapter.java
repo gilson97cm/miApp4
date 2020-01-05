@@ -21,6 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.apprutas.R;
 import com.example.apprutas.UserRoutes;
 
+import com.example.apprutas.Users;
+import com.example.apprutas.Util;
 import com.example.apprutas.bd.connection;
 import com.example.apprutas.entities.RouteVo;
 import com.example.apprutas.maps.ViewInMap;
@@ -56,7 +58,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteViewHol
         holder.txtLat.setText(mDataset.get(position).getLat());
         holder.txtLng.setText(mDataset.get(position).getLng());
         holder.txtIdUserCard.setText(mDataset.get(position).getIdUser());
-        //botones
+            //botones
         holder.setOnClickListeners();
     }
 

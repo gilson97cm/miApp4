@@ -78,9 +78,9 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
 
     public void Antut (GoogleMap googleMap) {
         mMap = googleMap;
-        final LatLng punto1 = new LatLng(-0.9329105480583024,-78.61739929765154);
+        //final LatLng punto1 = new LatLng(-0.9329105480583024,-78.61739929765154);
         //final LatLng punto2 = new LatLng(38.4190531,-3.6936194);
-        mMap.addMarker(new MarkerOptions().position(punto1).title("El Salto").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+       // mMap.addMarker(new MarkerOptions().position(punto1).title("El Salto").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
         //mMap.addMarker(new MarkerOptions().position(punto2).title("Punto2").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
 
     }
