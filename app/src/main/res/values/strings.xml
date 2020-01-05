@@ -27,4 +27,7 @@
 
     <string name="cityOrPlace">Ciudad o Lugar</string>
 
+    <string name="lat">Latitud:</string>
+    <string name="lng">Longitud:</string>
+
 </resources>

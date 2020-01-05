@@ -28,7 +28,7 @@ import com.example.apprutas.entities.RouteVo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteViewHolder>{
+public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteViewHolder> {
     private List<RouteVo> mDataset; //ArrayList<UserVo> mDataset;
     private List<RouteVo> mDatasetFull;
 
@@ -54,16 +54,19 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteViewHol
         holder.txtCity.setText(mDataset.get(position).getCity());
         holder.txtLat.setText(mDataset.get(position).getLat());
         holder.txtLng.setText(mDataset.get(position).getLng());
+        holder.txtIdUserCard.setText(mDataset.get(position).getIdUser());
         //botones
         holder.setOnClickListeners();
     }
+
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return mDataset.size();
     }
+
     //filtrar usuarios
-    public void setFilter(ArrayList<RouteVo> dealList_){
+    public void setFilter(ArrayList<RouteVo> dealList_) {
         this.mDataset = new ArrayList<>();
         this.mDataset.addAll(dealList_);
         notifyDataSetChanged();
@@ -83,6 +86,8 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteViewHol
         Button btnViewInMap;
         Button btnDestroyRoute;
 
+        TextView txtIdUserCard;
+
         RouteViewHolder(View v) {
             super(v);
             context = v.getContext();
@@ -96,6 +101,9 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteViewHol
             //botones
             btnViewInMap = (Button) v.findViewById(R.id.btnViewInMap);
             btnDestroyRoute = (Button) v.findViewById(R.id.btnDestroyRoute);
+
+            txtIdUserCard = (TextView) v.findViewById(R.id.txtIdUserCard);
+
         }
 
         void setOnClickListeners() {
@@ -109,11 +117,11 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteViewHol
             String city = txtCity.getText().toString();
             switch (v.getId()) {
                 case R.id.btnViewInMap:
-                   // Intent intent = new Intent(context, UserRoutes.class);
+                    // Intent intent = new Intent(context, UserRoutes.class);
                     //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     //enviamos el id y el nombre de una actividad a otra
                     //intent.putExtra("id", id);
-                    Toast.makeText(context, "ver en mapa" , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "ver en mapa", Toast.LENGTH_SHORT).show();
                     //context.startActivity(intent);
                     break;
                 case R.id.btnDestroyRoute:
@@ -126,21 +134,23 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteViewHol
 
                             String id = txtIdRoute.getText().toString();
                             String city = txtCity.getText().toString();
+                            String idUser = txtIdUserCard.getText().toString();
 
                             connection db = new connection(context, "bdRoutes", null, 1);
                             SQLiteDatabase baseDatos = db.getWritableDatabase();
 
                             if (!id.equals("")) {
-                                Cursor fila = baseDatos.rawQuery("SELECT * FROM route WHERE id = '"+id+"'", null);
+                                Cursor fila = baseDatos.rawQuery("SELECT * FROM route WHERE id = '" + id + "'", null);
                                 if (fila.getCount() <= 0) {
                                     Toast.makeText(context, "Nada para eliminar.", Toast.LENGTH_SHORT).show();
                                 } else {
-                                     baseDatos.delete("route", "id = " + id, null);
-                                   // baseDatos.delete("user", "id = '"+id+"'", null);
+                                    baseDatos.delete("route", "id = " + id, null);
+                                    // baseDatos.delete("user", "id = '"+id+"'", null);
                                     baseDatos.close();
                                     Toast.makeText(context, "Se elimino: " + city, Toast.LENGTH_SHORT).show();
                                     Intent intent1 = new Intent(context, UserRoutes.class);
                                     intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    intent1.putExtra("id", idUser);
                                     context.startActivity(intent1);
                                 }
                             } else {

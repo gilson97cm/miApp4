@@ -41,38 +41,81 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/txtIdRoute"/>
+                        <TextView
+                            android:visibility="gone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/txtIdUserCard"/>
 
                         <TextView
                             android:id="@+id/txtCity"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Nombre de la categoría"
+                            android:text="@string/cityOrPlace"
                             android:textSize="18sp"
                             android:textStyle="bold" />
-
-
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="2dp"
                             android:layout_margin="5dp"
                             android:background="@color/md_grey_50" />
 
-                        <TextView
-                            android:id="@+id/txtLatCard"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Latitud"
-                            android:textColor="@android:color/darker_gray"
-                            android:textSize="15sp"/>
-                        <TextView
-                            android:id="@+id/txtLngCard"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Longitud"
-                            android:textColor="@android:color/darker_gray"
-                            android:textSize="15sp"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                          <LinearLayout
+                              android:layout_width="match_parent"
+                              android:layout_height="match_parent"
+                              android:orientation="horizontal">
+                              <LinearLayout
+                                  android:layout_weight="1"
+                                  android:layout_width="0dp"
+                                  android:layout_height="match_parent"
+                                  android:orientation="vertical"
+                                  android:gravity="center">
+                                  <TextView
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="center"
+                                      android:text="@string/lat"
+                                      android:textSize="15sp"
+                                      android:textStyle="bold"/>
+                                  <TextView
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="center"
+                                      android:text="@string/lng"
+                                      android:textSize="15sp"
+                                      android:textStyle="bold"/>
+                              </LinearLayout>
+                              <LinearLayout
+                                  android:layout_weight="1"
+                                  android:layout_width="0dp"
+                                  android:layout_height="match_parent"
+                                  android:orientation="vertical">
+                                  <TextView
+                                      android:id="@+id/txtLatCard"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="center"
+                                      android:text="@string/lat"
+                                      android:textColor="@android:color/darker_gray"
+                                      android:textSize="15sp"/>
+                                  <TextView
+                                      android:id="@+id/txtLngCard"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:gravity="center"
+                                      android:text="@string/lng"
+                                      android:textColor="@android:color/darker_gray"
+                                      android:textSize="15sp"/>
+                              </LinearLayout>
+
+                          </LinearLayout>
+                        </LinearLayout>
+
                     </LinearLayout>
 
                 </LinearLayout>
