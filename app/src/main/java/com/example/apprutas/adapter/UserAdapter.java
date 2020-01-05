@@ -147,7 +147,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
                                 if (fila.getCount() <= 0) {
                                     Toast.makeText(context, "Nada para eliminar.", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    // baseDatos.delete("route", "idUser = " + id, null);
+                                    Cursor route = baseDatos.rawQuery("SELECT * FROM route WHERE idUser = '"+id+"'",null);
+                                    if(route.getCount() <=0 ){
+                                        Toast.makeText(context, "usuario sin rutas.", Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        baseDatos.delete("route", "idUser = '"+id+"'", null);
+                                        Toast.makeText(context, "Se elimino rutas de: " + name, Toast.LENGTH_SHORT).show();
+                                    }
                                     baseDatos.delete("user", "id = '"+id+"'", null);
                                     baseDatos.close();
                                     Toast.makeText(context, "Se elimino: " + name, Toast.LENGTH_SHORT).show();
