@@ -78,6 +78,44 @@
             android:layout_height="2dp"
             android:layout_margin="5dp"
             android:background="@color/md_grey_100" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtInputNameCity"
+                app:errorEnabled="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtEditNameCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/cityOrPlace"
+                    android:inputType="textCapWords"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/txtLat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+            <TextView
+                android:id="@+id/txtLng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_margin="5dp"
+            android:background="@color/md_grey_100" />
 
 
         <LinearLayout
@@ -96,7 +134,7 @@
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewCategory"
+                android:id="@+id/recyclerViewRoutes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -105,7 +143,7 @@
 
 
     <com.miguelcatalan.materialsearchview.MaterialSearchView
-        android:id="@+id/searchViewCategory"
+        android:id="@+id/searchViewRoute"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/searchRoute"

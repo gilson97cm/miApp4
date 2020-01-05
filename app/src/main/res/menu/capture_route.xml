@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/searchUser"
-        android:icon="@drawable/ic_action_action_search"
+    <item android:id="@+id/captureRoute"
         android:orderInCategory="100"
-        android:title="@string/searchUser"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        android:title="@string/addRoute"
+        android:icon="@drawable/ic_pin_drop_24dp" />
 </menu>

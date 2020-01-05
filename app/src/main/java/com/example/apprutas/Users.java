@@ -68,7 +68,7 @@ public class Users extends AppCompatActivity implements View.OnClickListener {
         MaterialSearchView searchViewM = (MaterialSearchView) findViewById(R.id.searchViewDeal);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search_user, menu);
-        MenuItem menuItem = menu.findItem(R.id.searchDeal);
+        MenuItem menuItem = menu.findItem(R.id.searchUser);
         searchViewM.setMenuItem(menuItem);
 
 
