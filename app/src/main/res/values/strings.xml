@@ -4,7 +4,7 @@
     <string name="viewMap">Mapa</string>
     <string name="viewListUsers">Lista de Usuarios</string>
     <string name="Users">Usuarios Registrados</string>
-    <string name="searchUser">Buscar Usuario...</string>
+    <string name="searchUser">Buscar por Apellido...</string>
 
     <string name="idUser">Código</string>
     <string name="name">Nombre</string>
@@ -20,5 +20,6 @@
 
     <string name="change">Cambiar</string>
     <string name="remove">Quitar</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

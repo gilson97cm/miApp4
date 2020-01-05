@@ -3,8 +3,11 @@ package com.example.apprutas;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -30,6 +33,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cardUser = (CardView) findViewById(R.id.cardUsers);
         cardMap = (CardView) findViewById(R.id.cardMap);
 
+        //permisos
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1000);
+
         cardUser.setOnClickListener(this);
         cardMap.setOnClickListener(this);
     }
@@ -44,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(this,"Usuarios",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.cardMap:
-                intent = new Intent(MainActivity.this, Map.class);
+                intent = new Intent(MainActivity.this, Maps.class);
                 Toast.makeText(this,"Mapa",Toast.LENGTH_SHORT).show();
                 break;
         }

@@ -51,7 +51,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     @Override
     public void onBindViewHolder(UserViewHolder holder, int position) {
         //asignamos los datos al cardView
-
         holder.txtIdUser.setText(mDataset.get(position).getId());
         holder.txtNameUser.setText(mDataset.get(position).getName());
         holder.txtLastNameUser.setText(mDataset.get(position).getLastName());

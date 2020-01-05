@@ -112,7 +112,7 @@ public class Users extends AppCompatActivity implements View.OnClickListener {
             text = text.toLowerCase();
 
             for(UserVo UserVo: deals){
-                String deal = UserVo.getName().toLowerCase();
+                String deal = UserVo.getLastName().toLowerCase();
 
                 if(deal.contains(text)){
                     listaFiltrada.add(UserVo);
@@ -146,7 +146,7 @@ public class Users extends AppCompatActivity implements View.OnClickListener {
         connection db = new connection(this, "bdRoutes", null, 1);
         SQLiteDatabase baseDatos = db.getWritableDatabase();
         if (db != null) {
-            Cursor fila = baseDatos.rawQuery("SELECT * FROM user ORDER BY name ASC", null);
+            Cursor fila = baseDatos.rawQuery("SELECT * FROM user ORDER BY lastName ASC", null);
             int i = 0;
             if (fila.moveToFirst()) {
                 do {
