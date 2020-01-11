@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppRutas</string>
+    <string name="app_name">Lugares</string>
     <string name="viewUsers">Usuarios</string>
     <string name="viewMap">Mapa</string>
     <string name="viewListUsers">Lista de Usuarios</string>
@@ -27,8 +27,8 @@
 
     <string name="cityOrPlace">Ciudad o Lugar</string>
 
-    <string name="lat">Latitud:</string>
-    <string name="lng">Longitud:</string>
+    <string name="lat">Latitud: </string>
+    <string name="lng">Longitud: </string>
 
     <string name="viewInMap">Ver en Mápa</string>
     <string name="title_activity_view_in_map">Map</string>

@@ -14,7 +14,7 @@ public class connection extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE user (id TEXT PRIMARY KEY, name TEXT,  lastName TEXT, avatar BLOG)");
-        db.execSQL("CREATE TABLE route (id INTEGER PRIMARY KEY, city TEXT, lat TEXT, lang TEXT, idUser TEXT)");
+        db.execSQL("CREATE TABLE route (id INTEGER PRIMARY KEY, city TEXT, lat TEXT, lang TEXT, idUser TEXT, latLng TEXT)");
     }
 
     @Override

@@ -11,7 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.apprutas.maps.Maps;
+import com.example.apprutas.user.Users;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(this,"Usuarios",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.cardMap:
-                intent = new Intent(MainActivity.this, Maps.class);
+                intent = new Intent(MainActivity.this, MapAllRoutes.class);
                 Toast.makeText(this,"Mapa",Toast.LENGTH_SHORT).show();
                 break;
         }

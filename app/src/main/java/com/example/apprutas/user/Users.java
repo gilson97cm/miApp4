@@ -1,4 +1,4 @@
-package com.example.apprutas;
+package com.example.apprutas.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -17,10 +17,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.apprutas.R;
 import com.example.apprutas.adapter.UserAdapter;
 import com.example.apprutas.bd.connection;
 import com.example.apprutas.entities.UserVo;
-import com.example.apprutas.user.frm_add_user;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 

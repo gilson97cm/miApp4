@@ -6,23 +6,18 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apprutas.R;
-import com.example.apprutas.UserRoutes;
+import com.example.apprutas.user.UserRoutes;
 
-import com.example.apprutas.Users;
-import com.example.apprutas.Util;
 import com.example.apprutas.bd.connection;
 import com.example.apprutas.entities.RouteVo;
 import com.example.apprutas.maps.ViewInMap;

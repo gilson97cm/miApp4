@@ -15,13 +15,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apprutas.R;
-import com.example.apprutas.UserRoutes;
-import com.example.apprutas.Users;
+import com.example.apprutas.user.UserRoutes;
+import com.example.apprutas.user.Users;
 import com.example.apprutas.Util;
 import com.example.apprutas.bd.connection;
 import com.example.apprutas.entities.UserVo;
@@ -68,7 +67,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         Cursor fila = baseDatos.rawQuery("SELECT * FROM route WHERE idUser = '" + mDataset.get(position).getId() + "'", null);
         Integer c = fila.getCount();
         baseDatos.close();
-        holder.txtNumRoutes.setText(""+c+" Ruta(s)");
+        holder.txtNumRoutes.setText(""+c+" Lugar(es)");
 
         //botones
         holder.setOnClickListeners();

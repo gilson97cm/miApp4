@@ -1,4 +1,4 @@
-package com.example.apprutas;
+package com.example.apprutas.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -22,15 +22,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.apprutas.R;
+import com.example.apprutas.Util;
 import com.example.apprutas.adapter.RouteAdapter;
 import com.example.apprutas.bd.connection;
 import com.example.apprutas.entities.RouteVo;
-import com.example.apprutas.entities.UserVo;
+import com.example.apprutas.maps.Maps;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
@@ -91,8 +92,6 @@ public class UserRoutes extends AppCompatActivity {
     //iconoes buscar y capturar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
-
         MaterialSearchView searchViewM = (MaterialSearchView) findViewById(R.id.searchViewRoute);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search_route, menu);
@@ -132,6 +131,8 @@ public class UserRoutes extends AppCompatActivity {
         });
         //icono  para caputar ruta
         getMenuInflater().inflate(R.menu.capture_route, menu);
+        //icono  para ver en el mapa con todas las rutas
+        getMenuInflater().inflate(R.menu.all_route, menu);
         return true; //
     }
 
@@ -157,63 +158,75 @@ public class UserRoutes extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        String idUser = txtIdUserRoutes.getText().toString();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.captureRoute) {
-            String idUser = txtIdUserRoutes.getText().toString();
-            //obtener latitud y longitud
-            //solicitar permisos
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                //   // ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1000);
-                Toast.makeText(this, "sin permisos", Toast.LENGTH_SHORT).show();
-            } else {
-                locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                assert locationManager != null;
-                location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                //GPS_PROVIDER es para el emulador
-                //NETWORK_PROVIDER es para el telefono
-                if (location != null) {
-                    txtLat.setText(String.valueOf(location.getLatitude()));
-                    txtLng.setText(String.valueOf(location.getLongitude()));
+        switch (id) {
+            case R.id.captureRoute:
+
+                //obtener latitud y longitud
+                //solicitar permisos
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    //   // ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1000);
+                    Toast.makeText(this, "sin permisos", Toast.LENGTH_SHORT).show();
+                } else {
+                    locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                    assert locationManager != null;
+                    location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                    //GPS_PROVIDER es para el emulador
+                    //NETWORK_PROVIDER es para el telefono
+                    if (location != null) {
+                        txtLat.setText(String.valueOf(location.getLatitude()));
+                        txtLng.setText(String.valueOf(location.getLongitude()));
+
+                    } else {
+                        Toast.makeText(this, "sin resultados", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                //guardar en la bd
+
+                connection db = new connection(this, "bdRoutes", null, 1);
+                SQLiteDatabase baseDatos = db.getWritableDatabase();
+                String city = txtEditNameCity.getText().toString();
+                String lat = txtLat.getText().toString();
+                String lang = txtLng.getText().toString();
+                String latLng = lat + "," + lang;
+
+                if (!city.isEmpty()) {
+                    ContentValues registro = new ContentValues();
+
+                   registro.put("city", city);
+                    registro.put("lat", lat);
+                    registro.put("lang", lang);
+                    registro.put("idUser", idUser);
+                    registro.put("latLng", latLng);
+
+                    baseDatos.insert("route", null, registro);
+                    baseDatos.close();
+                    clean();
+                    listRoutes.clear();
+                    adapter = new RouteAdapter(listRoutes);
+                    recyclerViewRoutes.setAdapter(adapter);
+                    recyclerViewRoutes.setAdapter(adapter);
+                    loadRoutes(idUser);
+                    Toast.makeText(this, "Se registro un lugar", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    Toast.makeText(this, "sin resultados", Toast.LENGTH_SHORT).show();
+                    txtInputNameCity.setError(" ");
+                    Toast.makeText(this, "Hay campos vacios.", Toast.LENGTH_SHORT).show();
                 }
-            }
-
-            //guardar en la bd
-
-            connection db = new connection(this, "bdRoutes", null, 1);
-            SQLiteDatabase baseDatos = db.getWritableDatabase();
-            String city = txtEditNameCity.getText().toString();
-            String lat = txtLat.getText().toString();
-            String lang = txtLng.getText().toString();
-
-
-            if (!city.isEmpty()) {
-                ContentValues registro = new ContentValues();
-                registro.put("city", city);
-                registro.put("lat", lat);
-                registro.put("lang", lang);
-                registro.put("idUser", idUser);
-
-                baseDatos.insert("route", null, registro);
-                baseDatos.close();
-                clean();
-                listRoutes.clear();
-                adapter = new RouteAdapter(listRoutes);
-                recyclerViewRoutes.setAdapter(adapter);
-                recyclerViewRoutes.setAdapter(adapter);
-                loadRoutes(idUser);
-                Toast.makeText(this, "Se registro un lugar", Toast.LENGTH_SHORT).show();
-
-            } else {
-                txtInputNameCity.setError("Ingrese Lugar.");
-                Toast.makeText(this, "Hay campos vacios.", Toast.LENGTH_SHORT).show();
-            }
-            //  Toast.makeText(this, "Ruta Guardada", Toast.LENGTH_SHORT).show();
-            return true;
+                //  Toast.makeText(this, "Ruta Guardada", Toast.LENGTH_SHORT).show();
+                // return true;
+                break;
+            case R.id.allRoute:
+                Intent intent = new Intent(UserRoutes.this, Maps.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("idUser", idUser);
+                startActivity(intent);
+                Toast.makeText(this, "Ver todos los lugares.", Toast.LENGTH_SHORT).show();
+                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -249,7 +262,7 @@ public class UserRoutes extends AppCompatActivity {
         connection db = new connection(this, "bdRoutes", null, 1);
         SQLiteDatabase baseDatos = db.getWritableDatabase();
         if (db != null) {
-            Cursor fila = baseDatos.rawQuery("SELECT * FROM route WHERE idUser = '" + idUser + "'  ORDER BY city ASC", null);
+            Cursor fila = baseDatos.rawQuery("SELECT * FROM route WHERE idUser = '" + idUser + "'  ORDER BY id DESC", null);
             int i = 0;
             if (fila.moveToFirst()) {
                 do {

@@ -25,7 +25,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.apprutas.R;
-import com.example.apprutas.Users;
 import com.example.apprutas.Util;
 import com.example.apprutas.bd.connection;
 import com.google.android.material.textfield.TextInputEditText;
